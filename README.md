@@ -1,0 +1,1 @@
+# kos-palsu-part1
