@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<title>AU Kos Palsu</title>
+<title>AU Kos Palsu - Part 2</title>
 <style>
 :root{--sf:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",system-ui,"Segoe UI",Roboto,sans-serif;--wag:#25d366}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
@@ -267,7 +267,7 @@ body.mobile #screen{border-radius:0}
   <div id="homebar"></div><div id="hbhit"></div>
   <div id="end" class="layer"></div>
 </div></div>
-<div id="intro"><h1>KOS PALSU</h1><p>AU horor &middot; Lea<br>Layar ini meniru iPhone. Nyalakan suara, lebih baik pakai headset. Tema: kos palsu.</p><div class="go">KETUK UNTUK MULAI</div></div>
+<div id="intro"><h1>KOS PALSU</h1><p style="color:#c33;letter-spacing:.3em">PART 2</p><p>AU horor &middot; Lea &middot; 13 Oktober 2026<br>Layar ini meniru iPhone. Nyalakan suara, lebih baik pakai headset. Tema: kos palsu.</p><div class="go">KETUK UNTUK MULAI</div></div>
 
 <script>
 /* ================= util ================= */
@@ -276,7 +276,7 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const pad=n=>String(n).padStart(2,"0");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const rnd=(a,b)=>a+Math.random()*(b-a);
-const st={locked:true,app:null,room:null,clock:[23,41],bat:34,pending:null,rakaLive:false,liveC:[],viewers:128,liveStage:0,ttTarget:null,ttCur:null,photoTime:null,dist:6.2,scale:1,hints:new Set(),storyHint:null,photoNew:false,smsUnknown:false,alarm:false};
+const st={locked:true,app:null,room:null,clock:[20,41],bat:34,pending:null,rakaLive:false,liveC:[],viewers:128,liveStage:0,ttTarget:null,ttCur:null,photoTime:null,dist:6.2,scale:1,hints:new Set(),storyHint:null,photoNew:false,smsUnknown:false,alarm:false};
 const clk=()=>pad(st.clock[0])+"."+pad(st.clock[1]);
 const fired={},waiters={};
 function ev(n){fired[n]=true;(waiters[n]||[]).forEach(f=>f());waiters[n]=[]}
@@ -786,192 +786,131 @@ async function gate(name,app){if(fired[name])return;hint(app,true);await waitEv(
 function liveSay(u,t,cls){st.liveC.push({u,t,cls:cls||""});st.viewers+=Math.floor(rnd(3,40));ttLiveRefresh()}
 function liveStage(n){st.liveStage=n;ttLiveRefresh()}
 
+let K=0;
 async function story(){
- push("bumarni",{f:"chip",t:"Hari ini"});
- push("bumarni",{f:"them",t:"Nak Lea, sudah sampai depan? Gerbangnya ibu buka dari tadi.",time:"23.40"});
- await sleep(900);
- push("bumarni",{f:"them",t:"Langsung naik ke kamar 10 ya. Kuncinya di bawah pot melati.",time:"23.41"});
+ push("raka",{f:"chip",t:"13 Oktober 2025"});
+ push("raka",{f:"me",t:"dek bertahan ya. kakak balik. kakak janji",time:"02.44",ok:1});
+ push("mama",{f:"chip",t:"Hari ini"});
+ push("mama",{f:"them",t:"Lea. Sudah setahun.",time:"20.41"});
  await waitEv("unlock");startDrone();await sleep(1200);
- await gate("open:bumarni","whatsapp");await sleep(700);
- /* --- bab 1: aturan kos --- */
- await reply("bumarni","iya bu, aku udah di depan. sepi banget ya bu");
- await say("bumarni","Iya. Penghuni lain tidurnya cepat.");
- await sleep(800);
- await say("bumarni","Ibu sedang di luar kota malam ini, jadi tidak bisa menemani. Tapi ada beberapa aturan yang harus Nak Lea ingat.");
- await say("bumarni","1. Lewat jam 12 malam, jangan buka pintu walau ada yang mengetuk.");
- await say("bumarni","2. Kamar 13 itu kosong. Jangan didekati, jangan dibuka.");
- await say("bumarni","3. Kalau ada yang memanggil namamu dari lorong, jangan dijawab.");
- await say("bumarni","4. Jangan matikan lampu kamar sampai pagi.");
- addNote("Aturan Kos Kenanga","Dari Bu Marni:\n\n1. Lewat jam 12 malam, jangan buka pintu walau ada yang mengetuk.\n2. Kamar 13 kosong. Jangan didekati, jangan dibuka.\n3. Kalau ada yang memanggil namamu dari lorong, jangan dijawab.\n4. Jangan matikan lampu kamar sampai pagi.");
- const a1=await reply("bumarni",["bu... ini aturan beneran?","iya bu. aku gak masalah, aku cuma butuh tempat buat tidur"]);
- if(a1===0)await say("bumarni","Ibu tidak pernah bercanda soal aturan, Nak.");else await say("bumarni","Kamu mirip anak-anak ibu yang dulu. Sama-sama sedang mencari tempat untuk lari.");
- await say("bumarni","Selamat istirahat. Kamar 10 sudah ibu siapkan khusus untukmu.");
- /* --- bab 2: mama --- */
- await sleep(2500);setClock(23,52);
- await say("mama","Lea.");
- await say("mama","Mama tahu kamu baca. Mama gak minta kamu balas.");
- await say("mama","Cuma mau bilang, malam ini tepat setahun Dinda pergi. Mama yakin kamu inget.");
- const m1=await reply("mama",["ma jangan bahas dinda","aku inget ma. aku inget banget"]);
- if(m1===0){await say("mama","Iya, maaf nak.");await say("mama","Tapi Mama gak pernah nyalahin kamu soal malam itu. Jangan nyalahin diri sendiri terus.")}
- else{await say("mama","Nak... itu bukan salah kamu.");await say("mama","Dinda juga gak pernah marah sama kamu. Mama yakin.")}
- await say("mama","Raka nanyain kamu terus. Dia bikin video buat kamu, katanya biar kakaknya mau pulang.");
- await say("mama","Pulang ya, Lea. Kapan pun. Mama tunggu.");
- /* --- bab 3: dinda --- */
- await sleep(2500);setClock(23,58);
- push("dinda",{f:"chip",t:"Hari ini"});await sleep(1800);
- await say("dinda","Lea.",{typ:1800});
- await say("dinda","Akhirnya kamu dateng.");
- await say("dinda","Aku nungguin dari tahun lalu.");
- const d1=await reply("dinda",["din... ini beneran kamu?","kamu udah meninggal din. kamu bukan dinda"]);
- if(d1===0){await say("dinda","Iya. Ini aku. Aku gak punya banyak waktu.")}else{await say("dinda","Aku tahu.");await say("dinda","Tapi aku masih di sini, Lea. Sendirian.")}
- await say("dinda","Aku di kamar 11. Sebelah kamarmu.");
- await say("dinda","Dengerin aku. Kamu masuk ke tempat ini bukan kebetulan.");
- await say("dinda","Buka Instagram. Lihat iklan yang bawa kamu ke sini.");
- await gate("igpost","instagram");await sleep(2600);
- await say("dinda","Liat siapa yang nyukain iklannya?");
- await say("dinda","Itu akunku. Aku gak pernah mencet apa-apa, Lea. Dia pake akunku buat manggil kamu.");
- const d2=await reply("dinda",["kenapa dia manggil aku?","din maafin aku. malam itu harusnya aku angkat telponmu"]);
- if(d2===0){await say("dinda","Karena kamu satu-satunya yang bakal dateng kalau akunku yang manggil.")}else{await say("dinda","Jangan bahas itu dulu. Waktu kita sedikit.");await say("dinda","Tapi makasih. Udah lama aku pengen denger itu.")}
- await say("dinda","Keluar sebelum jam tiga pagi. Tolong.");
- await say("dinda","Aku telpon ya. Denger suaraku sekali aja.");
- await sleep(2000);setClock(0,7);
- await incomingCall("Unknown",[["(statis, lalu napas yang gemetar)",1800],["Lea... ini aku.",2600],["Aku nggak marah kamu gak angkat malam itu.",3200],["Aku cuma takut sendirian di sini.",3000],["Sembilan kali aku telpon kamu.",2600],["Aku nunggu. Kamu gak dateng. Yang dateng... dia.",3200,"knock1"],["Dia lagi di lorong, Lea.",2400,"glitch"]]);
- /* --- bab 4: bu marni curiga --- */
- await sleep(1500);setClock(0,12);
- await say("bumarni","Nak Lea, tadi ada yang menelepon?");
- const b1=await reply("bumarni",["bu, tadi temen aku nelpon. katanya dia di kamar 11","nggak bu, hp aku silent kok"]);
- if(b1===0){await say("bumarni","Kamar 11 sudah kosong sejak tahun lalu, Nak.");await say("bumarni","Jangan dengarkan suara yang bukan dari ibu.")}else{await say("bumarni","Anak pintar.")}
- await say("bumarni","Lampu kamarnya masih menyala, kan?");
- /* --- bab 5: tiktok dinda --- */
- await sleep(2500);setClock(0,20);
- await say("dinda","Lea. Satu hal lagi.");
- await say("dinda","Buka TikTok. Video terakhirku.");
- await say("dinda","Kamu gak pernah buka akunku lagi, kan?");
- st.ttTarget="dinda";await gate("ttdinda","tiktok");await sleep(2500);
- await say("dinda","Itu jam 21.21.");
- await say("dinda","Aku ngerekam itu buat kamu. Biar kamu liat kamarnya. Biar kamu mau nyusul.");
- await say("dinda","Aku nunggu kamu angkat telponku. Cuma kamu.");
- const d3=await reply("dinda",["din... maaf. malam itu aku lebih milih ketawa sama orang yang bahkan gak kukenal","aku gak tau harus bilang apa"]);
- if(d3===0){await say("dinda","Aku tahu. Aku liat story kamu malam itu. Kamu keliatan seneng.");await say("dinda","Aku ikut seneng. Tapi aku juga sedih.")}else{await say("dinda","Gak usah bilang apa-apa. Cukup kamu di sini.")}
- /* --- bab 6: safari --- */
- await sleep(2500);setClock(0,38);
- await say("dinda","Cari berita soal aku. Kamu perlu tau apa yang polisi bilang.");
- await gate("article","safari");await sleep(2200);
- await say("dinda","Tangan kananku megang hp. Layarnya masih nyala.");
- await say("dinda","Aku gak mati karena api, Lea. Api itu tahun 2019.");
- await say("dinda","Aku mati kehabisan napas di lorong yang gak ada ujungnya, nungguin kamu.");
- /* --- bab 7: mama ketakutan --- */
- await sleep(2800);setClock(0,52);setBat(20);
- await say("mama","Lea... kamu masih bangun?");
- await say("mama","Akun Dinda barusan nge-like postingan Mama. Jam 23.40.");
- await say("mama","Mama takut, nak. Mama nangis dari tadi.");
- const m2=await reply("mama",["ma itu bukan dinda. ma jangan bales apa2","ma aku bakal pulang. aku janji"]);
- if(m2===0){await say("mama","Terus itu siapa, nak?");await say("mama","Kamu lagi di mana sebenernya?")}else{await say("mama","Beneran?");await say("mama","Mama tunggu. Mama masakin opor kesukaan kamu.")}
- /* --- bab 8: lampu mati & tawaran --- */
- await sleep(3000);setBat(9);await flicker(0);dim(.4);await sleep(1500);setClock(1,10);
- await say("bumarni","Nak.");
- await say("bumarni","Kenapa lampu kamarnya mati?");
- await say("bumarni","Ibu kan sudah bilang.");
- const b2=await reply("bumarni",["bu, dinda ada di kamar 11. dia temen aku","ibu bukan pemilik kos. ibu bukan manusia kan"]);
- if(b2===0){await say("bumarni","Dinda... anak manis. Setahun ibu temani dia.");await say("bumarni","Dia boleh pulang malam ini.")}else{await say("bumarni","Ibu manusia, Nak. Dulu.")}
- await say("bumarni","Ibu cuma butuh satu penghuni baru di kamar 10.");
- await say("bumarni","Satu yang tinggal. Satu yang pulang. Itu adil, bukan?");
- sfx.knock(3);glitch();await sleep(2200);setClock(1,20);
- await incomingCall("Unknown",[["(suara pintu, lalu bisikan cepat)",1800],["Lea, dengerin. Jangan dengerin dia.",2800],["Dia bohong. Aku udah setahun dijanjiin pulang.",3200],["Aku... sempat setuju buat bujuk kamu.",3000],["Aku kesepian, Lea. Aku mau pulang. Aku mau liat Mama.",3400],["Maafin aku. Aku bukan temen yang baik.",3000,"glitch"]]);
- /* --- bab 9: foto --- */
- await sleep(2500);setClock(1,38);
- st.photoNew=true;st.photoTime="01.38";if(APPS.photos&&APPS.photos.el)photosRender(APPS.photos.el);
- sfx.msg();buzz();banner({icon:"photos",title:"Foto",body:"1 foto baru ditambahkan - 01.38",tap:()=>openApp("photos")});
- await gate("photoview","photos");await sleep(2500);
- await say("dinda","Itu aku. Yang duduk di ujung kasurmu.");
- await say("dinda","Aku udah di sini sejak jam sebelas. Kamu gak sadar, kan?");
- await say("dinda","Aku cuma pengen ada yang nemenin. Itu aja.");
- /* --- bab 10: raka --- */
- await sleep(2800);setClock(2,0);dim(.55);setBat(5);
- await say("raka","kak lea");
- await say("raka","aku di jalan");
- await say("raka","aku naik ojol sendiri. mama tidur. aku mau jemput kakak pulang");
- const r1=await reply("raka",["RAKA PULANG SEKARANG. ini bahaya!!","dek... kamu dapet alamat ini dari mana?"]);
- if(r1===0)await say("raka","gak mau. kak lea sebulan gak bales chatku");else await say("raka","dari iklan di tiktok kak. ada kak dinda di iklannya, dia ngajak aku");
- await say("raka","aku live ya kak, biar mama liat aku baik2 aja");
- await say("raka","buka tiktok kak");
- st.rakaLive=true;st.dist=1.4;ttAddLive();
+ await gate("open:mama","whatsapp");await sleep(700);
+ /* --- bab 1: hp raka menyala --- */
+ await say("mama","Polisi nutup kasus Raka bulan lalu. Katanya \"anak hilang, tanpa tanda kekerasan\".");
+ await say("mama","Mama gak percaya. Mama gak akan pernah percaya.");
+ await say("mama","HP Raka Mama simpen di laci. Barusan nyala sendiri.");
+ await say("mama","Ada notif TikTok. Raka lagi live, Lea.");
+ const m1=await reply("mama",["ma jangan ditonton. itu bukan raka","ma aku liat sekarang. mama tenang dulu"]);
+ await say("mama",m1===0?"Mama gak sanggup gak nonton, nak. Itu suara adikmu.":"Cepet ya, nak. Mama gak kuat sendirian.");
+ setClock(20,58);st.rakaLive=true;ttAddLive();
  sfx.msg();buzz();banner({icon:"tiktok",title:"TikTok",body:"raka.nih sedang LIVE",tap:()=>openApp("tiktok")});
- st.ttTarget="live";await gate("ttlive","tiktok");
- liveStage(0);liveSay("raka.nih","halo semuaa. aku mau jemput kakakku di kos ini","h");
- await sleep(2600);liveSay("sari.nurul","dek ini jam 2 pagi lho, pulang gih");
- await sleep(2400);liveSay("kak.bima","kos kenanga?? bukannya itu yang pernah kebakar");
- await sleep(2400);liveSay("dindaaa.rf","RAKA PULANG","g");
- await sleep(2600);liveStage(1);liveSay("raka.nih","udah sampai gerbang. lampu lantai 2 nyala lho","h");
- await sleep(2500);liveSay("marni.kenanga","Langsung naik ke kamar 10 ya, nak.","m");
- await sleep(2400);liveSay("raka.nih","iya buk! eh tadi suara siapa ya","h");
- await sleep(2000);liveSay("kak.bima","dek keluar sekarang");
+ st.ttTarget="live";liveStage(2);await gate("ttlive","tiktok");
+ liveSay("raka.nih","halo semuaa. aku masih nunggu kak lea di kos ini. udah setahun lho","h");
+ await sleep(2600);liveSay("sari.nurul","ini akun anak yang hilang tahun lalu?? bukan prank kan");
+ await sleep(2400);liveSay("kak.bima","kenapa lorongnya panjang banget");
+ await sleep(2400);liveSay("raka.nih","kata kak dinda aku gak boleh nunggu di kamar. tapi kamarnya dingin","h");
+ await sleep(2400);liveSay("marni.kenanga","Raka anak baik. Raka sabar menunggu.","m");
+ await sleep(2400);liveSay("dindaaa.rf","JANGAN DATENG LEA","g");
  await sleep(2200);
- /* --- bab 11: mama menelepon --- */
- setClock(2,12);st.dist=0.2;
- await incomingCall("Mama",[["(napas terisak)",1800],["Lea... Raka gak ada di kamarnya.",3000],["Sepedanya ada. Mama liat dia live di tiktok.",3200],["Itu kosan Kenanga, Lea. Tempat Dinda...",3200],["Mama mohon. Jangan sampai Mama kehilangan anak Mama lagi.",3600],["Mama udah telpon polisi. Mama berangkat sekarang.",3200],["Sayang kamu, nak. Sayang banget.",3000,"glitch"]]);
- /* --- bab 12: tawaran terakhir --- */
- await sleep(2000);setClock(2,25);liveStage(2);liveSay("raka.nih","pintunya kebuka sendiri. aku masuk ya, kak lea pasti di atas","h");liveSay("marni.kenanga","Anak pintar.","m");setBat(3);
- await say("dinda","Lea. Raka udah masuk gerbang.");
- await say("dinda","Ada yang belum aku bilang.");
- await say("dinda","Dia janjiin aku pulang kalau aku bujuk kamu tinggal. Itu kenapa aku nunggu kamu.");
- await say("dinda","Aku mau bohongin diri sendiri bahwa itu cuma buat ngasih tau kamu bahaya. Tapi itu bohong.");
- await say("dinda","Maaf, Lea. Aku kesepian. Aku mau pulang.");
- const d4=await reply("dinda",["din... aku ngerti. aku gak marah","kamu bohongin aku din. kamu tau aku bakal dateng"]);
- if(d4===0)await say("dinda","Kamu terlalu baik. Itu yang bikin aku makin ngerasa bersalah.");else await say("dinda","Iya. Aku tau. Aku pantas dibenci.");
- await say("bumarni","Anak kecil itu sudah di lorong lantai satu, Nak.");
- await say("bumarni","Kamar 10 hanya perlu satu penghuni.");
- await say("bumarni","Satu yang tinggal. Dua yang pulang. Itu tawaran paling murah hati yang pernah ibu berikan.");
- await say("bumarni","Pilih.");
- const fin=await reply("bumarni",["aku yang tinggal. lepasin Raka sama Dinda.","aku gak mau mati di sini. aku kabur lewat tangga belakang."]);
+ /* --- bab 2: raka & ayu --- */
+ setClock(21,9);
+ await say("raka","kak lea");
+ await say("raka","aku bisa chat dari kamar ini. sinyalnya cuma satu garis");
+ await say("raka","ada anak cewek kecil duduk di tangga. namanya Ayu");
+ await say("raka","dia nanya terus \"ayah kapan jemput aku?\" kasian kak");
+ const r1=await reply("raka",["dek, tanya Ayu. dia nunggu siapa dan dari kapan?","dek jangan ngomong sama dia. jauhin dia"]);
+ if(r1===0){K++;await say("raka","katanya dia nunggu dijemput dari tahun 2019. dari kebakaran itu kak");await say("raka","dia gak bisa pulang kalau gak ada yang jemput")}else await say("raka","tapi dia nangis kak... aku gak tega");
+ /* --- bab 3: dinda 21.21 --- */
+ await sleep(2400);setClock(21,21);glitch();
+ await say("dinda","Lea.");
+ await say("dinda","21.21. Kamu pasti inget.");
+ await say("dinda","Aku gak boleh nulis banyak. Dia baca dari lorong.");
+ await say("dinda","Jangan datang. Tahun lalu kamu selamat. Itu cukup.");
+ const d1=await reply("dinda",["din, malam itu siapa yang ngetuk pintumu?","aku harus jemput raka. aku gak mau selamat sendirian lagi"]);
+ if(d1===0){K++;await say("dinda","Bukan Bu Marni. Itu anak kecil. Dia minta selimut.");await say("dinda","Aku buka pintunya. Dia cuma kedinginan, Lea. Bu Marni gak niat nahan kita. Dia cuma gak mau anaknya sendirian.")}else await say("dinda","Kamu keras kepala. Sama kayak tahun lalu.");
+ /* --- bab 4: mama menyelidiki --- */
+ await sleep(2600);setClock(21,40);setBat(18);
+ await say("mama","Lea, Mama baru nelpon RT lama kos Kenanga.");
+ const m2=await reply("mama",["ma, tanya apa aja soal pemiliknya","ma udah. jangan telpon siapa2 lagi"]);
+ if(m2===0){K++;
+  await say("mama","Namanya Marni Kenanga. Anaknya Ayu, 9 tahun. Kosnya kebakaran 2019.");
+  await say("mama","Marni selamat. Ayu nunggu dijemput ayahnya di kamar 13. Ayahnya gak pernah dateng.");
+  await say("mama","Sejak itu Marni nyari penghuni yang mau dijemput. Dia gak mau anaknya sendirian.");
+  addNote("Kos Kenanga","Pemilik: Marni Kenanga.\nAnaknya: Ayu, 9 tahun. Menunggu dijemput di kamar 13 sejak kebakaran 2019.\nTidak ada yang menjemput.");
+ }else await say("mama","Iya nak. Maaf. Mama cuma pengen bantu.");
+ /* --- bab 5: bu marni --- */
+ await sleep(2600);setClock(22,15);dim(.3);setBat(11);
+ await say("bumarni","Nak Lea. Ibu lihat kamu membaca pesan anak-anak ibu.");
+ await say("bumarni","Tahun lalu kamu menolak tawaran ibu. Ibu tidak marah.");
+ await say("bumarni","Tapi malam ini kamar 13 dibuka. Kamu tahu artinya.");
+ await say("bumarni","Jam tiga. Kalau tidak ada yang datang, Raka yang tinggal.");
+ const b1=await reply("bumarni",["bu, aku dateng. ibu janji lepasin raka","bu... sebenernya ibu butuh apa?"]);
+ await say("bumarni",b1===0?"Ibu tidak pernah menjanjikan apa pun. Ibu hanya menawarkan.":"Ibu butuh... ibu butuh semua orang berhenti pergi.");
+ /* --- bab 6: mama menelepon --- */
+ await sleep(2400);setClock(1,30);dim(.5);setBat(6);
+ await incomingCall("Mama",[["(napas terburu)",1600],["Lea, kamu mau ke sana, kan? Mama tau.",3000],["Mama udah di taksi. 40 menit lagi.",3000],["Kali ini kita jemput Raka bareng-bareng.",3200],["Jangan matiin HP-mu, nak. Mama mohon.",3200,"glitch"]]);
+ /* --- bab 7: ayu --- */
+ await sleep(2000);setClock(2,20);setBat(3);liveSay("raka.nih","kak lea?? aku liat kakak di lorong!","h");liveSay("marni.kenanga","Anak pintar.","m");
+ await incomingCall("Unknown",[["(suara anak kecil, sangat pelan)",2000],["Kakak yang mau jemput Raka?",2800],["Kata ibu, jemput itu artinya pulang.",3200],["Tapi gak ada yang pernah jemput aku.",3200],["Kamar 13 dingin, kak.",3000,"end"]]);
+ /* --- bab 8: pilihan --- */
+ await sleep(1800);setClock(2,52);dim(.7);sfx.knock(3);glitch();
+ await say("bumarni","Kamu datang, Nak. Kamar 13 sudah terbuka.");
+ await say("bumarni","Satu yang tinggal. Satu yang pulang. Ibu tidak pernah mengubah aturannya.");
+ await say("bumarni","Pilih. Sebelum jam tiga.");
+ const fin=await reply("bumarni",["aku yang tinggal. biarin raka sama dinda pulang","ibu nyari ayu kan? ayo bu, kita jemput ayu bareng2","RAKA KELUAR SEKARANG. kita lari lewat tangga belakang!"]);
  if(fin===0){
-  /* ===== ending A: yang tinggal ===== */
-  await say("bumarni","Anak baik.");
-  sfx.hit();glitch();dim(.85);setClock(2,41);
-  liveStage(3);
-  await say("raka","kak?? lampunya mati semua");
-  await say("raka","tapi ada kak dinda!! dia pegang tanganku");
-  await sleep(1500);
-  await say("raka","kak lea aku udah keluar. kak dinda yang nuntun aku");
-  await say("raka","kak dinda bilang makasih. dia nangis kak");
-  await say("raka","kak lea dimana? aku sama mama di depan. tapi kosnya gosong kak...");
+  await say("bumarni","Anak baik.");sfx.hit();glitch();dim(.85);setClock(2,58);liveStage(3);
+  await say("raka","kak?? lampunya mati semua. tapi kak dinda pegang tanganku");
+  await say("raka","kak lea aku sama kak dinda udah di gerbang. mama meluk aku");
   await reply("raka","dek, pulang sama mama ya. kakak sayang kalian",{stuck:1});
-  await sleep(2200);
-  await say("raka","kak?? centang satu terus");
-  await sleep(2000);setClock(3,0);
-  await incomingCall("Unknown",[["(bisikan, terdengar jauh)",2000],["Lea... aku udah di luar.",2800],["Aku liat Mama kamu. Dia nangis sambil meluk Raka.",3400],["Kamu bukan temen yang jahat. Kamu cuma telat sehari.",3400],["Makasih udah dateng, Lea.",3000,"end"]]);
-  await say("dinda","Aku udah di rumah.");
-  await say("dinda","Mamaku meluk aku. Hangat banget.");
-  await say("mama","Lea... Raka pulang. Dia bilang kakaknya yang nyuruh dia pulang.");
-  await say("mama","Kamu di mana, nak? Opornya masih Mama angetin.");
-  st.smsUnknown=true;updateBadges();
-  await endGame("a");
+  await sleep(2400);
+  await say("dinda","Makasih, Lea. Aku pulang.");
+  await say("mama","Lea? Kamu di mana, nak? Kosnya gosong...");
+  st.smsUnknown=true;updateBadges();await endGame("a");
+ }else if(fin===1&&K>=2){
+  await say("bumarni","...");
+  await say("bumarni","Siapa yang mengajarimu nama itu?");
+  await say("bumarni","Ayu itu... Ayu itu anak ibu.");
+  await reply("bumarni","iya bu. ibu gak usah nunggu sendirian lagi. ayu gak salah apa2");
+  sfx.hit();glitch();dim(.15);droneTo(.01);setClock(3,0);liveStage(3);
+  await say("bumarni","Ibu cuma ingin... ada yang menjemputnya.");
+  await say("bumarni","Terima kasih, Nak Lea.");
+  await sleep(1800);
+  await say("raka","kak lea!! pintunya kebuka sendiri. aku sama kak dinda lari");
+  await say("raka","tadi ada anak kecil lewat. dia pegang tangan ibu-ibu. dua-duanya senyum");
+  await say("dinda","Lea. Aku di gerbang. Aku bisa lihat langit mulai terang.");
+  await say("dinda","Kali ini kamu dateng tepat waktu.");
+  await say("mama","LEA! Mama liat Raka! Mama liat Raka!!");
+  await endGame("d");
+ }else if(fin===1){
+  await say("bumarni","Kamu tahu apa soal anak ibu?!");sfx.hit();glitch();dim(.9);liveStage(3);setClock(3,0);
+  await say("raka","kak lea. kenapa kakak nyebut nama itu. ibu-ibunya marah kak");
+  await reply("raka","dek lari! kakak nyusul!",{stuck:1});
+  await sleep(2600);
+  await say("mama","Lea? Raka? Mama di depan gerbang. Kenapa gak ada yang keluar?");
+  st.smsUnknown=true;updateBadges();await endGame("b");
  }else{
-  /* ===== ending B: yang selamat ===== */
-  await say("bumarni","Pilihan yang sama dengan semua yang dulu, Nak.");
-  setClock(2,44);dim(.75);liveStage(3);sfx.hit();glitch();
-  await say("dinda","Lea. Kamu beneran pergi?");
-  await say("dinda","Gapapa. Aku ngerti. Aku juga mau pergi kalau bisa.");
-  await say("raka","kak lea kamu di mana");
-  await say("raka","lampunya mati semua kak. ada ibu-ibu berdiri di ujung lorong");
-  await say("raka","kak lea aku takut. kakak janji jemput aku kan?");
-  await reply("raka","dek bertahan ya. kakak balik. kakak janji",{stuck:1});
-  await sleep(3000);setClock(5,40);setBat(1);dim(.2);droneTo(.08);
-  await say("mama","Lea. Polisi nemuin sepeda Raka di depan gerbang bekas kos.");
-  await say("mama","Raka gak ada, nak.");
-  await say("mama","Kamu masih hidup kan? Tolong jawab Mama. Cuma kamu yang Mama punya sekarang.");
-  await sleep(2000);
-  await incomingCall("Unknown",[["(suara anak kecil menangis, jauh sekali)",2200],["Kak... Lea...?",2800],["Kakak janji jemput aku...",3000],["Kok kakak pergi?",2800],["Kamar 10 dingin, kak.",3200,"end"]]);
-  st.smsUnknown=true;updateBadges();
-  await endGame("b");
+  await say("bumarni","Anak-anak ibu tidak pernah lari.");sfx.hit();glitch();dim(.9);liveStage(3);setClock(3,0);
+  await say("dinda","Lea, tangga belakangnya gak ada ujungnya. Aku sudah coba.");
+  await say("raka","kak lea ada di mana? lampunya mati");
+  await reply("raka","dek tunggu kakak",{stuck:1});
+  await sleep(2600);setClock(5,40);
+  await say("mama","Polisi nemuin tasmu di tangga belakang. Lea... tolong jawab.");
+  st.smsUnknown=true;updateBadges();await endGame("c");
  }
 }
-async function endGame(kind){
+const ENDS={
+ a:["ENDING: PENGHUNI BARU","Raka dan Dinda pulang. Kamu tinggal.","Kamar 10 kembali terisi.<br>Di rumah, Mama menghangatkan opor untuk tiga orang.<br><br>Unggahan baru muncul:<br>\"Tinggal 1 kamar lagi!\""],
+ b:["ENDING: NAMA YANG SALAH","Kamu menyebut nama yang belum kamu pahami.","Kamu, Raka, dan Dinda kini menunggu di kamar yang sama.<br>Marni masih menunggu seseorang yang tak pernah datang.<br><br>Mama tetap berdiri di depan gerbang sampai pagi."],
+ c:["ENDING: LARI","Kamu selamat. Sekali lagi.","Tangga belakang tak pernah berujung.<br>Raka masih menunggu di kamar 10.<br><br>Setiap 13 Oktober, notifikasi dari raka.nih muncul sebelum jam 21.21."],
+ d:["ENDING TRUE: DIJEMPUT","Tidak ada lagi yang menunggu sendirian.","Fajar naik di atas kos Kenanga yang gosong.<br>Raka, Dinda, dan Mama berdiri di gerbang.<br>Ayu akhirnya dijemput.<br><br>Di rumah, opor Mama akhirnya dimakan bersama."]
+};
+async function endGame(k){
  dim(1);await sleep(1600);glitch();
- const A=kind==="a",e=$("#end");
- e.innerHTML=`<div style="font-size:15px;letter-spacing:.4em;color:#a33">TAMAT</div><div style="font-size:12px;letter-spacing:.3em;color:#777">${A?"ENDING: YANG TINGGAL":"ENDING: YANG SELAMAT"}</div><div style="font-size:26px;font-weight:200;line-height:1.4">${A?"Raka dan Dinda pulang malam itu.":"Kamu selamat. Kamu selalu selamat."}</div><div style="color:#8a8a93;font-size:14px;line-height:1.7">${A?"Kamar 10 terisi: Lea Nadhira.<br>Di rumah, Mama masih menghangatkan opor yang tak pernah dimakan.<br><br>Postingan baru muncul di Instagram:<br>\"Tinggal 1 kamar lagi!\"<br>Disukai oleh lea.nadhira":"Sepeda Raka ditemukan di depan gerbang bekas kos.<br>Raka (12) dan Dinda (19) kini menunggu di kamar yang sama.<br><br>Dan setiap 13 Oktober,<br>kamu tetap membuka ponselmu sebelum jam 21.21."}</div><div id="again" style="margin-top:30px;padding:12px 26px;border:1px solid #444;border-radius:24px;font-size:14px;cursor:pointer">Main lagi</div>`;
+ const E=ENDS[k],e=$("#end");
+ e.innerHTML=`<div style="font-size:15px;letter-spacing:.4em;color:#a33">TAMAT PART 2</div><div style="font-size:12px;letter-spacing:.3em;color:#777">${E[0]}</div><div style="font-size:26px;font-weight:200;line-height:1.4">${E[1]}</div><div style="color:#8a8a93;font-size:14px;line-height:1.7">${E[2]}</div><div id="again" style="margin-top:30px;padding:12px 26px;border:1px solid #444;border-radius:24px;font-size:14px;cursor:pointer">Main lagi</div>`;
  e.classList.add("show");$("#dim").style.opacity=0;$("#again").onclick=()=>location.reload();
 }
+
 
 /* ================= init ================= */
 function fit(){const m=innerWidth<500;document.body.classList.toggle("mobile",m);const w=m?390:414,h=m?844:868;st.scale=Math.min(innerWidth/w,innerHeight/h)*(m?1:.97);$("#phone").style.transform=`scale(${st.scale})`}
